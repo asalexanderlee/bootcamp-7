@@ -9,20 +9,20 @@ import { connect } from "react-redux";
 // ACTIONS
 import { toggleTodo, pickDueDate, deleteTodo } from "../actions";
 
-const Todo = ({ completed, id, dueDate, text, dispatch }) => {
+const Todo = ({ completed, _id, dueDate, text, dispatch }) => {
   return (
     <div className="Todo">
       <div className="todo-wrapper" style={{ backgroundColor: completed ? "#01BAC420" : "#efefef" }}>
-        <input type="checkbox" checked={completed} onChange={() => dispatch(toggleTodo(id))} />
+        <input type="checkbox" checked={completed} onChange={() => dispatch(toggleTodo(_id))} />
         <p>{text}</p>
         <DatePicker
           selected={dueDate}
           dateFormat="MMMM d"
-          onChange={date => dispatch(pickDueDate(date, id))}
+          onChange={date => dispatch(pickDueDate(date, _id))}
           placeholderText="Set Date"
           className="DatePicker"
         />
-        <button onClick={() => dispatch(deleteTodo(id))}>✖︎</button>
+        <button onClick={() => dispatch(deleteTodo(_id))}>✖︎</button>
       </div>
       <TodoFinishAnimation isDone={completed} />
     </div>
@@ -31,7 +31,7 @@ const Todo = ({ completed, id, dueDate, text, dispatch }) => {
 
 // PROPS REQUIRED
 Todo.propTypes = {
-  id: PropTypes.number.isRequired,
+  _id: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   dueDate: PropTypes.instanceOf(Date),
   completed: PropTypes.bool.isRequired

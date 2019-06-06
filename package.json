@@ -1,8 +1,12 @@
 {
-  "name": "bootcamp4",
+  "name": "bootcamp-7",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:8080",
   "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.5.13",
+    "morgan": "^1.9.1",
     "react": "^16.8.3",
     "react-datepicker": "^2.1.0",
     "react-dom": "^16.8.3",
@@ -12,18 +16,15 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "concurrently \"react-scripts start\" \"nodemon src/server.js\"",
+    "build": "react-scripts build"
   },
   "eslintConfig": {
     "extends": "react-app"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+  "browserslist": [">0.2%", "not dead", "not ie <= 11", "not op_mini all"],
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "nodemon": "^1.19.1"
+  }
 }

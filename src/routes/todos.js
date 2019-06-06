@@ -5,13 +5,9 @@ const isAuthenticated = require("./auth");
 
 //get all todos
 router.get("/", (req, res) => {
-  isAuthenticated(req.body.token).then(canAccess => {
-    if (canAccess) {
-      Todo.find({})
-        .then(todos => res.send(todos))
-        .catch(err => console.log(err));
-    } else res.status(403).send("You must be registered as a user before viewing this info.");
-  });
+  Todo.find({})
+    .then(todos => res.send(todos))
+    .catch(err => console.log(err));
 });
 //get completed todos
 router.get("/complete", (req, res) => {
@@ -45,15 +41,11 @@ router.get("/:_id", (req, res) => {
 });
 //add todo
 router.post("/", (req, res) => {
-  isAuthenticated(req.body.token).then(userId => {
-    if (userId) {
-      //get userId back from isAuthenticated function and assign to todo
-      const todo = new Todo({ description: req.body.text, createdOn: new Date(), completedOn: null, userId: userId });
-      todo.save((err, doc) => {
-        if (err) console.error(err);
-        res.send("Successfully added todo");
-      });
-    } else res.status(403).send("You must be registered as a user before viewing this info.");
+  console.log(req.body);
+  const todo = new Todo({ text: req.body.text, completed: false, type: "todo" });
+  todo.save((err, doc) => {
+    if (err) console.error(err);
+    res.send("Successfully added todo");
   });
 });
 //update text of todo by id

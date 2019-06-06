@@ -1,10 +1,5 @@
-const todosLink = "https://raw.githubusercontent.com/asalexanderlee/bootcamp-6/ashley/todos.json";
-
 export const toggleTodo = id => {
   return { type: "TOGGLE_TODO", id };
-};
-export const addTodo = text => {
-  return { type: "ADD_TODO", text };
 };
 export const pickDueDate = (date, id) => {
   return { type: "PICK_DUE_DATE", date, id };
@@ -31,18 +26,27 @@ export const loadTodos = todos => {
   return { type: "LOAD_TODOS", todos };
 };
 
+//so we don't have to type our headers every time
+const headers = (method, body) => ({
+  method,
+  body: JSON.stringify(body),
+  headers: { "content-type": "application/json" }
+});
+
 //return an action creator that will import todos from our faux "server"
-export const importTodos = () => {
+export const fetchTodos = () => {
   return async dispatch => {
-    const todos = await fetch(todosLink, { method: "GET" }).then(res => res.json());
-    //if todos exists, convert date strings to date objects
-    const convertedTodos = todos !== undefined ? convertDates(todos) : undefined;
-    if (convertedTodos) dispatch(loadTodos(convertedTodos));
+    const todos = await fetch("/todos", headers("GET")).then(res => res.json());
+    if (todos) dispatch(loadTodos(todos));
     else console.error("Failed to fetch todos from server");
   };
 };
 
-const convertDates = todos =>
-  todos.map(todo => {
-    return { ...todo, dueDate: new Date(todo.dueDate) };
-  });
+export const addTodo = text => {
+  return async dispatch => {
+    const isSuccessful = await fetch("/todos", headers("POST", text));
+    //if successful, load updated todos into state
+    if (isSuccessful) dispatch(fetchTodos());
+    else console.error("Unable to post a new todo");
+  };
+};

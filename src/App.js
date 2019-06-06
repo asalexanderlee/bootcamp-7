@@ -4,15 +4,12 @@ import TodoList from "./components/TodoList";
 import TodoEntry from "./components/TodoEntry";
 import ControlPanel from "./components/ControlPanel";
 import { connect } from "react-redux";
-import { importTodos } from "./actions";
+import { fetchTodos } from "./actions";
 
 class App extends React.Component {
   //when App is about to be mounted, import todos from source
   componentWillMount() {
-    this.props
-      .dispatch(importTodos())
-      .then(() => console.log("Successfully imported todos"))
-      .catch(err => console.error(err));
+    this.props.dispatch(fetchTodos()).catch(err => console.error(err));
   }
   render() {
     return (
