@@ -60,13 +60,9 @@ router.post("/:_id", (req, res) => {
 });
 //delete todo by id
 router.delete("/:_id", (req, res) => {
-  isAuthenticated(req.body.token).then(canAccess => {
-    if (canAccess) {
-      Todo.deleteOne({ _id: mongoose.Types.ObjectId(req.params._id) })
-        .then(() => res.send("Successfully deleted todo"))
-        .catch(err => console.log(err));
-    } else res.status(403).send("You must be registered as a user before viewing this info.");
-  });
+  Todo.deleteOne({ _id: mongoose.Types.ObjectId(req.params._id) })
+    .then(() => res.send("Successfully deleted todo"))
+    .catch(err => console.log(err));
 });
 //mark todo as complete by id
 router.post("/:_id/complete", (req, res) => {

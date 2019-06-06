@@ -9,7 +9,7 @@ import { fetchTodos } from "./actions";
 class App extends React.Component {
   //when App is about to be mounted, import todos from source
   componentWillMount() {
-    this.props.dispatch(fetchTodos()).catch(err => console.error(err));
+    this.props.dispatch(fetchTodos());
   }
   render() {
     return (
