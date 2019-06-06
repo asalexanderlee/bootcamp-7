@@ -13,7 +13,7 @@ const Todo = ({ completed, _id, dueDate, text, dispatch }) => {
   return (
     <div className="Todo">
       <div className="todo-wrapper" style={{ backgroundColor: completed ? "#01BAC420" : "#efefef" }}>
-        <input type="checkbox" checked={completed} onChange={() => dispatch(toggleTodo(_id))} />
+        <input type="checkbox" checked={completed} onChange={e => dispatch(toggleTodo(_id, e.target.checked))} />
         <p>{text}</p>
         <DatePicker
           selected={dueDate}

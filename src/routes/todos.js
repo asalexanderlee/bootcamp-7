@@ -65,14 +65,10 @@ router.delete("/:_id", (req, res) => {
     .catch(err => console.log(err));
 });
 //mark todo as complete by id
-router.post("/:_id/complete", (req, res) => {
-  isAuthenticated(req.body.token).then(canAccess => {
-    if (canAccess) {
-      Todo.findOneAndUpdate({ _id: mongoose.Types.ObjectId(req.params._id) }, { $set: { completedOn: new Date() } })
-        .then(() => res.send("Marked todo as complete"))
-        .catch(err => console.log(err));
-    } else res.status(403).send("You must be registered as a user before viewing this info.");
-  });
+router.post("/:_id/:completed", (req, res) => {
+  Todo.findOneAndUpdate({ _id: mongoose.Types.ObjectId(req.params._id) }, { $set: { completed: req.params.completed } })
+    .then(() => res.send("Marked todo as complete"))
+    .catch(err => console.log(err));
 });
 
 module.exports = router;

@@ -1,6 +1,3 @@
-export const toggleTodo = id => {
-  return { type: "TOGGLE_TODO", id };
-};
 export const pickDueDate = (date, id) => {
   return { type: "PICK_DUE_DATE", date, id };
 };
@@ -51,6 +48,15 @@ export const addTodo = text => {
 export const deleteTodo = _id => {
   return async dispatch => {
     const isSuccessful = await fetch(`/todos/${_id}`, headers("DELETE"));
+    //if successful, load updated todos into state
+    if (isSuccessful) dispatch(fetchTodos());
+    else console.error("Unable to delete the todo");
+  };
+};
+
+export const toggleTodo = (_id, isChecked) => {
+  return async dispatch => {
+    const isSuccessful = await fetch(`/todos/${_id}/${isChecked}`, headers("POST"));
     //if successful, load updated todos into state
     if (isSuccessful) dispatch(fetchTodos());
     else console.error("Unable to delete the todo");
