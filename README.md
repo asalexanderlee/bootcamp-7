@@ -1,35 +1,68 @@
-# Putting It All Together
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Hello Bootcampers! You've made it so far! You are _SO_ close to completing your very first full stack web app. But before you give yourself a big pat on the back, you've got one more heavy lift: we need to connect our API with our frontend. HOW?!
+## Available Scripts
 
-## Release 0
+In the project directory, you can run:
 
-You've got a bunch of routes in your API. And in `bootcamp-6` you learned how to pull data from a static JSON file on the web. Now we're going to pull JSON from our server. For every action in your todo, make a thunk that updates the database to reflect the state change on the frontend.
+### `npm start`
 
-For this to work, you have to start both your frontend `npm start` and your backend: `npm run start:dev` (alternatively `nodemon server.js`). You'll probably get a CORS error at first. (These are important. Google CORS and learn about it.) If you get a CORS error, add a proxy to your API in your `package.json`. It should look something like this.
+Runs the app in the development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-```JSON
-{
-  "name": "exmaple",
-  "version": "1.0.0",
-  "description": "example",
-  "main": "server.js",
-  "proxy": "http://localhost:8080",
-  "dependencies": {}
-}
-```
+The page will reload if you make edits.<br>
+You will also see any lint errors in the console.
 
-You've completed this challenge when the changes you make on your frontend are persisted in a server.
+### `npm test`
 
-## Release 1
+Launches the test runner in the interactive watch mode.<br>
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-URL routing is an essential part of any web application. We already have routes for our API, but what about routes on the frontend? Wouldn't be easier if a users could go to `localhost:8080/incomplete` to find all their incomplete tasks? Or go to `localhost:8080/upcoming` to find the todos that are coming due? These sorts of routes have to be declared on the frontend (in React). Fortunately, there is a fabulous tool called [React Router](https://github.com/ReactTraining/react-router), which makes all of this work really easy. It is an essential part of any web application. Your job is to implement the following routes in your application:
+### `npm run build`
 
-* `/incomplete`
-* `/complete`
-* `/upcoming`
-* `/starred`
+Builds the app for production to the `build` folder.<br>
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-Remember, these are routes that you define on your FRONTEND not in your BACKEND. That is, do not put these routes in Express! They go in React!
+The build is minified and the filenames include the hashes.<br>
+Your app is ready to be deployed!
 
-Check out the [Posters Portal](https://github.com/DavidsonCollege/poster-portal) project on GitHub if you need a real world example.
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `npm run eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+
+### Analyzing the Bundle Size
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+
+### Making a Progressive Web App
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+
+### Advanced Configuration
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+
+### Deployment
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+
+### `npm run build` fails to minify
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
