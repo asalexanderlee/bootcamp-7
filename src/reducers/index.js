@@ -42,7 +42,7 @@ export default function todoApp(state = initialState, action) {
       state.todos = [...state.todos.sort((todo1, todo2) => (todo1.text < todo2.text ? -1 : 1))];
       return state;
     case "SORT_BY_DATE":
-      state.todos = [...state.todos.sort((todo1, todo2) => todo1.dueDate - todo2.dueDate)];
+      state.todos = [...state.todos.sort((todo1, todo2) => (todo1.dueDate < todo2.dueDate ? -1 : 1))];
       return state;
     case "LOAD_TODOS":
       state.todos = [...action.todos];

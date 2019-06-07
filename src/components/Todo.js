@@ -16,7 +16,7 @@ const Todo = ({ completed, _id, dueDate, text, dispatch }) => {
         <input type="checkbox" checked={completed} onChange={e => dispatch(toggleTodo(_id, e.target.checked))} />
         <p>{text}</p>
         <DatePicker
-          selected={new Date(dueDate)}
+          selected={dueDate !== undefined ? new Date(dueDate) : undefined}
           dateFormat="MMMM d"
           onChange={date => dispatch(pickDueDate(_id, date))}
           placeholderText="Set Date"

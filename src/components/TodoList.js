@@ -15,7 +15,13 @@ const TodoList = ({ todos, dispatch }) => {
         </div>
         {todos.length > -1 && <button onClick={() => dispatch(addFolder())}>Add Folder</button>}
       </div>
-      {todos.map((todo, i) => (todo.type === "todo" ? <Todo {...todo} key={i} /> : <Folder {...todo} key={i} />))}
+      {todos
+        .filter(todo => todo.completed === false)
+        .map((todo, i) => (todo.type === "todo" ? <Todo {...todo} key={i} /> : <Folder {...todo} key={i} />))}
+      <br />
+      {todos
+        .filter(todo => todo.completed === true)
+        .map((todo, i) => (todo.type === "todo" ? <Todo {...todo} key={i} /> : <Folder {...todo} key={i} />))}
     </div>
   );
 };
