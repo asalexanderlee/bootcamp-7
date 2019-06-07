@@ -38,27 +38,27 @@ export const fetchTodos = () => {
 
 export const addTodo = text => {
   return async dispatch => {
-    const isSuccessful = await fetch("/todos", headers("POST", text));
+    const res = await fetch("/todos", headers("POST", { text }));
     //if successful, load updated todos into state
-    if (isSuccessful) dispatch(fetchTodos());
+    if (res.ok) dispatch(fetchTodos());
     else console.error("Unable to post a new todo");
   };
 };
 
 export const deleteTodo = _id => {
   return async dispatch => {
-    const isSuccessful = await fetch(`/todos/${_id}`, headers("DELETE"));
+    const res = await fetch(`/todos/${_id}`, headers("DELETE"));
     //if successful, load updated todos into state
-    if (isSuccessful) dispatch(fetchTodos());
+    if (res.ok) dispatch(fetchTodos());
     else console.error("Unable to delete the todo");
   };
 };
 
 export const toggleTodo = (_id, isChecked) => {
   return async dispatch => {
-    const isSuccessful = await fetch(`/todos/${_id}/${isChecked}`, headers("POST"));
+    const res = await fetch(`/todos/${_id}/${isChecked}`, headers("POST"));
     //if successful, load updated todos into state
-    if (isSuccessful) dispatch(fetchTodos());
+    if (res.ok) dispatch(fetchTodos());
     else console.error("Unable to delete the todo");
   };
 };

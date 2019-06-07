@@ -1,7 +1,7 @@
 {
   "name": "bootcamp-7",
   "version": "0.1.0",
-  "private": true,
+  "main": "./src/server.js",
   "proxy": "http://localhost:8080",
   "dependencies": {
     "express": "^4.17.1",
