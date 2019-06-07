@@ -13,7 +13,7 @@ class TodoEntry extends Component {
   };
   handleSubmit = (e, keyPressed = false) => {
     if (keyPressed && e.keyCode !== ENTER_KEY) return;
-    if (this.state.text != "") {
+    if (this.state.text !== "") {
       this.props.dispatch(addTodo(this.state.text));
       this.setState({ text: "" });
     }

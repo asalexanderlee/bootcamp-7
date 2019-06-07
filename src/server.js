@@ -17,7 +17,7 @@ app.use(morgan("tiny"));
 require("./models");
 const User = require("mongoose").model("User");
 mongoose
-  .connect("mongodb://localhost:27017/todoApp", { useNewUrlParser: true })
+  .connect("mongodb://localhost:27017/todoApp", { useNewUrlParser: true, useFindAndModify: false })
   .catch(err => console.error("Unable to connect to mongoDB. Please check to make sure you have mongod running."));
 
 // initialize routes

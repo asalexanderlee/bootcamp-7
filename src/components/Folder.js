@@ -36,7 +36,7 @@ Folder.propTypes = {
       id: PropTypes.number.isRequired,
       completed: PropTypes.bool.isRequired,
       text: PropTypes.string.isRequired,
-      dueDate: PropTypes.instanceOf(Date)
+      dueDate: PropTypes.string
     }).isRequired
   ).isRequired
 };

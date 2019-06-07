@@ -16,9 +16,9 @@ const Todo = ({ completed, _id, dueDate, text, dispatch }) => {
         <input type="checkbox" checked={completed} onChange={e => dispatch(toggleTodo(_id, e.target.checked))} />
         <p>{text}</p>
         <DatePicker
-          selected={dueDate}
+          selected={new Date(dueDate)}
           dateFormat="MMMM d"
-          onChange={date => dispatch(pickDueDate(date, _id))}
+          onChange={date => dispatch(pickDueDate(_id, date))}
           placeholderText="Set Date"
           className="DatePicker"
         />
@@ -33,7 +33,7 @@ const Todo = ({ completed, _id, dueDate, text, dispatch }) => {
 Todo.propTypes = {
   _id: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
-  dueDate: PropTypes.instanceOf(Date),
+  dueDate: PropTypes.string,
   completed: PropTypes.bool.isRequired
 };
 

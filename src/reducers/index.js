@@ -1,12 +1,6 @@
 const initialState = {
   todos: []
 };
-const defaultTodo = {
-  text: "Default todo",
-  completed: false,
-  dueDate: undefined, //type: Date
-  type: "todo"
-};
 const defaultFolder = {
   text: "Folder Name",
   todos: [],

@@ -54,7 +54,7 @@ router.post("/:_id", (req, res) => {
     if (canAccess) {
       Todo.findOneAndUpdate({ _id: mongoose.Types.ObjectId(req.params._id) }, { $set: { description: req.body.text } })
         .then(() => res.send("Updated todo description"))
-        .catch(err => console.log(err));
+        .catch(err => console.error(err));
     } else res.status(403).send("You must be registered as a user before viewing this info.");
   });
 });
@@ -62,13 +62,19 @@ router.post("/:_id", (req, res) => {
 router.delete("/:_id", (req, res) => {
   Todo.deleteOne({ _id: mongoose.Types.ObjectId(req.params._id) })
     .then(() => res.send("Successfully deleted todo"))
-    .catch(err => console.log(err));
+    .catch(err => console.error(err));
 });
 //mark todo as complete by id
-router.post("/:_id/:completed", (req, res) => {
-  Todo.findOneAndUpdate({ _id: mongoose.Types.ObjectId(req.params._id) }, { $set: { completed: req.params.completed } })
+router.post("/complete/:_id", (req, res) => {
+  Todo.findOneAndUpdate({ _id: mongoose.Types.ObjectId(req.params._id) }, { $set: { completed: req.body.isChecked } })
     .then(() => res.send("Marked todo as complete"))
-    .catch(err => console.log(err));
+    .catch(err => console.error(err));
+});
+//change due date by id
+router.post("/dueDate/:_id", (req, res) => {
+  Todo.findOneAndUpdate({ _id: mongoose.Types.ObjectId(req.params._id) }, { $set: { dueDate: req.body.date } })
+    .then(() => res.send("Changed due date"))
+    .catch(err => console.error(err));
 });
 
 module.exports = router;
